@@ -1,5 +1,19 @@
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Angular 2 Basic</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <!-- <li><a href="/form-add">Form Create New</a></li> -->
+        <li><a routerLink="form-add">Form Create New</a></li>
+        <li><a routerLink="THPCM">List Item TPHCM</a></li>
+        <li><a routerLink="DN">List Item DN</a></li>
+        <li><a routerLink="all-list-item">All List Item</a></li>
+      </ul>
+    </div>
+</nav>
 <div class="container">
     <div class="row">
-        <item></item>
+        <!-- <item></item> -->
+        <!-- <item-form></item-form> -->
+        <router-outlet></router-outlet>
     </div>
 </div>

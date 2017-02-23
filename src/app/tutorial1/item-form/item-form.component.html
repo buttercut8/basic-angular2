@@ -1,0 +1,55 @@
+<form  [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <div class="col m4 input-field">
+          <input type="text" id="name" name="select" formControlName="name">
+          <label for="name">Name</label>
+          <span *ngIf="form.controls.name.errors?.pattern" class="error">
+                Name has invalid characters
+          </span>
+    </div>
+    <div class="col m4 input-field">
+        <input type="text" id="email"  formControlName="email">
+        <label for="email">Email</label>
+        <span *ngIf="form.controls.email.errors?.required" class="error">
+              Email is field required
+        </span>
+    </div>
+    <div class="col m4 input-field">
+        <input type="text" id="phone"  formControlName="phone">
+        <label for="phone">Phone</label>
+        <span *ngIf="form.controls.phone.errors?.required" class="error">
+              Phone is field required
+        </span>
+    </div>
+    <div class="col m4 input-field">
+        <input type="text" id="city"  formControlName="city">
+        <label for="name">City</label>
+        <span *ngIf="form.controls.city.errors?.required" class="error">
+              City is field required
+        </span>
+    </div>
+    <div class="col m4 input-field">
+        <input type="text" id="birthday" formControlName="birthday">
+        <label for="birthday">Years</label>
+        <span *ngIf="form.controls.birthday.errors?.year" class="error">
+              Must be between {{form.controls.birthday.errors?.year.min}} and {{form.controls.birthday.errors?.year.max}}
+        </span>
+    </div>
+    <div class="col m4 input-field">
+          <p>
+            <input type="checkbox" id="isFavorite"  class="filled-in" formControlName="isFavorite" >
+            <label for="isFavorite">Checkbox</label>
+          </p>
+    </div>
+    <div class="col m10 offset-m1 input-field">
+         <textarea id="aboutMe" class="materialize-textarea" data-length="120" formControlName="aboutMe"></textarea>
+         <label for="aboutMe">About Me</label>
+         <span *ngIf="form.controls.aboutMe.errors?.required" class="error">
+             About Me is field required
+         </span>
+    </div>
+    <input type="hidden" formControlName="detail">
+    <input type="hidden" value="">
+    <div class="col m12 center-align">
+        <button type="submit" class="waves-effect waves-light btn" [disabled]="!form.valid">Submit</button>
+    </div>
+</form>
