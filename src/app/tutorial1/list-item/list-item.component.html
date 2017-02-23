@@ -1,18 +1,25 @@
+<section class="section">
+      <div>
+            {{infoLists | categoryList}}
+      </div>
+</section>
 <div class="col m4" *ngFor="let infoList of infoLists">
     <div class="card green darken-3 white-text">
-        <p class="card-title center-align" [ngClass]="{'orange-text text-lighten-3':infoList.city === 'DN','yellow-text':infoList.city === 'TPHCM'}" >{{infoList.name}}</p>
-        <template [ngIf]="infoList.email">
-            <div class="info_orther">
-                <p>{{infoList.birthday}}</p>
-                <p>{{infoList.email}} ---- {{infoList.phone}}</p>
-            </div>
-        </template>
+        <p class="card-title center-align" [ngClass]="{'green-text text-accent-4':infoList.city === 'DN','yellow-text':infoList.city === 'TPHCM'}" >{{ infoList.name | slice: 0: 5 | uppercase }} ---- {{infoList.gender}}</p>
+       <div class="info_orther">
+          <template [ngIf]="infoList.birthday">
+                <!-- <p>{{infoList.birthday | date:"MM/dd/yy"  }}</p> -->
+                <p>{{infoList.birthday | date: 'shortDate' }}</p>
+          </template>
+          <p>{{infoList.email}} ---- {{infoList.phone}}</p>
+        </div>
         <div class="card-content about_me">
             {{infoList.aboutMe}}
         </div>
         <div class="card-action white">
-             <a [href]="infoList.detail" class="red-text" (click)="OnDelete($event)">View detail</a>
-             <button class="btn btn-floating waves-effect waves-light red right"><i class="material-icons" itemFavorite>favorite</i></button>
+             <a [href]="infoList.detail" class="red-text">View detail</a>
+             <button class="btn btn-floating waves-effect waves-light right blue-grey darken-1"><i class="material-icons" (click)="OnDelete($event,infoList)">delete</i></button>
+             <button class="btn btn-floating waves-effect waves-light red right"><i class="material-icons" [itemFavorite]="infoList.isFavorite">favorite</i></button>
         </div>
     </div>
 </div>
