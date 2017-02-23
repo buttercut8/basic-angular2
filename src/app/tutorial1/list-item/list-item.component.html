@@ -1,0 +1,24 @@
+<section class="section">
+      <div>
+            {{infoLists | categoryList}}
+      </div>
+</section>
+<div class="col m4" *ngFor="let infoList of infoLists">
+    <div class="card green darken-3 white-text">
+        <p class="card-title center-align" [ngClass]="{'green-text text-accent-4':infoList.city === 'DN','yellow-text':infoList.city === 'TPHCM'}" >{{ infoList.name | slice: 0: 5 | uppercase }}</p>
+       <div class="info_orther">
+          <template [ngIf]="infoList.birthday">
+                <!-- <p>{{infoList.birthday | date:"MM/dd/yy"  }}</p> -->
+                <p>{{infoList.birthday | date: 'shortDate' }}</p>
+          </template>
+          <p>{{infoList.email}} ---- {{infoList.phone}}</p>
+        </div>
+        <div class="card-content about_me">
+            {{infoList.aboutMe}}
+        </div>
+        <div class="card-action white">
+             <a [href]="infoList.detail" class="red-text" (click)="OnDelete($event)">View detail</a>
+             <button class="btn btn-floating waves-effect waves-light red right"><i class="material-icons" [itemFavorite]="infoList.isFavorite">favorite</i></button>
+        </div>
+    </div>
+</div>
