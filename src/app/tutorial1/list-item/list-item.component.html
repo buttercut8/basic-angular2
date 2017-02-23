@@ -1,0 +1,18 @@
+<div class="col m4" *ngFor="let infoList of infoLists">
+    <div class="card green darken-3 white-text">
+        <p class="card-title center-align" [ngClass]="{'orange-text text-lighten-3':infoList.city === 'DN','yellow-text':infoList.city === 'TPHCM'}" >{{infoList.name}}</p>
+        <template [ngIf]="infoList.email">
+            <div class="info_orther">
+                <p>{{infoList.birthday}}</p>
+                <p>{{infoList.email}} ---- {{infoList.phone}}</p>
+            </div>
+        </template>
+        <div class="card-content about_me">
+            {{infoList.aboutMe}}
+        </div>
+        <div class="card-action white">
+             <a [href]="infoList.detail" class="red-text" (click)="OnDelete($event)">View detail</a>
+             <button class="btn btn-floating waves-effect waves-light red right"><i class="material-icons" itemFavorite>favorite</i></button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+<div class="collection">
+    <a href="#" class="collection-item" *ngFor="let item of collectedItems">
+        <button class="red right waves_effect white-text" (click)="removeItem(item)">Remove</button>
+        {{item.description}}  ------------------  {{item.type}}
+    </a>
+</div>

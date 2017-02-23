@@ -1,0 +1,6 @@
+<div class="collection">
+    <a href="#" class="collection-item" *ngFor="let item of collectables">
+        <button class="green accent-4 right waves_effect white-text" (click)="AddItem(item)">Add</button>
+        {{item.description}} -- {{item.type}}
+    </a>
+</div>
