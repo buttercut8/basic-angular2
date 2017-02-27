@@ -1,0 +1,186 @@
+<div class="col m12 center-align">
+    <h4>Form Validate</h4>
+</div>
+<section class="section">
+    <div class="row">
+        <form [formGroup]="orderSheetForm" (ngSubmit)="onSubmitForm()">
+            <section class="section">
+                <div class="col m6 offset-m3 input-field">
+                    <input type="text" class="validate" id="name" formControlName="customerName">
+                    <label for="name">Your Name</label>
+                </div>
+            </section>
+
+            <div class="col m12">
+
+                <section class="section">
+                    <div class="col m4 input-field">
+                        <h5>Pick your size</h5>
+                            <input type="radio" name="size" value="small" id="small" class="with-gap">
+                            <label for="small">Small</label>
+
+                            <input type="radio" id="large" name="size" value="large" class="with-gap">
+                            <label for="large">Large</label>
+                    </div>
+                </section>
+
+
+                <section class="section">
+                    <div class="col m4 input-field">
+                        <h5>Specialty SandWich</h5>
+                          <select class="browser-default" formControlName="specialtySandwich">
+
+                            <option value="" disabled selected>Choose your option</option>
+
+                            <option value="The Grinder">The Grinder</option>
+
+                            <option value="Cordon BLeu">Cordon BLeu</option>
+                            <!-- <option [ngValue]="ValueSelectNew" >Cordon BLeu</option> -->
+
+                            <option value="Cali Cheesesteak">Cali Cheesesteak</option>
+
+                          </select>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <div class="col m4 input-field">
+                        <h5>A Bread</h5>
+                            <input type="radio" name="bread" value="Wheat Roll" id="wheat_roll">
+                            <label for="wheat_roll">Wheat Roll</label>
+
+                            <input type="radio" id="white_roll" name="bread" value="White Roll">
+                            <label for="white_roll">White Roll</label>
+
+                            <input type="radio" id="Sourdough" name="bread" value="Sourdough Roll">
+                            <label for="Sourdough">Sourdough Roll</label>
+                    </div>
+                </section>
+
+
+            </div>
+
+
+            <div class="col m12">
+                <section class="section" formGroupName="meats">
+                    <div class="col m4">
+                        <h5>The Meat</h5>
+                            <p class="input-field">
+                                <input type="checkbox" id="Ham" formControlName="meatHam">
+                                <label for="Ham">Meat Ham</label>
+                            </p>
+                            <p class="input-field">
+                                <input type="checkbox" id="Turkey" formControlName="meatTurkey">
+                                <label for="Turkey">Meat Turkey</label>
+                            </p>
+                            <p class="input-field">
+                                <input type="checkbox" id="RoastBeef" formControlName="meatRoastBeef">
+                                <label for="RoastBeef">Meat RoastBeef</label>
+                            </p>
+                    </div>
+                </section>
+
+
+                <section class="section" formGroupName="cheeses">
+                    <div class="col m4">
+                        <h5>The Chesses</h5>
+                            <p class="input-field">
+                                <input type="checkbox" id="cheesesProvolone" formControlName="cheesesProvolone">
+                                <label for="cheesesProvolone">Cheeses Provolone</label>
+                            </p>
+                            <p class="input-field">
+                                <input type="checkbox" id="cheesesCheddar" formControlName="cheesesCheddar">
+                                <label for="cheesesCheddar">Cheeses Cheddar</label>
+                            </p>
+                            <p class="input-field">
+                                <input type="checkbox" id="cheesesSwiss" formControlName="cheesesSwiss">
+                                <label for="cheesesSwiss">Cheeses Swiss</label>
+                            </p>
+                    </div>
+                </section>
+
+
+                <section class="section" formGroupName="veggiesAndSuch">
+                    <div class="col m4">
+                        <h5>The Veggies And Such</h5>
+                            <div class="switch">
+                              <label>
+                                No
+                                <input type="checkbox" id="veggieLettuce" formControlName="veggieLettuce">
+                                <span class="lever"></span>
+                                Veggie Lettuce
+                              </label>
+                            </div>
+                            <div class="switch">
+                              <label>
+                                No
+                                <input type="checkbox" id="veggieTomato" formControlName="veggieTomato">
+                                <span class="lever"></span>
+                                Veggie Tomato
+                              </label>
+                            </div>
+                            <div class="switch">
+                              <label>
+                                No
+                                <input type="checkbox" id="veggieMustard" formControlName="veggieMustard">
+                                <span class="lever"></span>
+                                Veggie Mustard
+                              </label>
+                            </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <section class="section" formArrayName="weirdRequests" class="weird-requests">
+                <div class="col m8 offset-m2 input-field">
+                    <h5>Weird Request</h5>
+                    <div class="collection">
+                        <li class="collection-item" *ngFor="let item of weirdRequestsControls.controls; let i = index">
+                            <input type="text" formControlName="{{i}}">
+                            <button (click)="onRemoveWeirdRequest(i)" type="button" class="btn btn-floating red waves-effect waves-light"><i class="material-icons">delete</i></button>
+                        </li>
+                        <div class="center-align">
+                            <button (click)="onAddWeirdRequest()" type="button" class="btn green accent-3 waves-effect waves-light"><i class="material-icons left">add</i>Add a requests</button>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section class="section">
+                <div class="col m10 offset-m1">
+                    <h5>Orther Notes</h5>
+                    <div class="input-field">
+                        <textarea id="notices" formControlName="ortherNotes" class="materialize-textarea" data-length="120"></textarea>
+                        <label for="notices">notices</label>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="section">
+                <div class="col m4 offset-m4">
+                    <button class="btn waves-effect-waves-ligth green accent-3" type="submit"><i class="material-icons left">send</i>Submit Place Order</button>
+                    <button class="btn waves-effect-waves-ligth red" type="button" (click)="onResetForm()"><i class="material-icons left">info_outline</i>Reset</button>
+                </div>
+            </section>
+
+
+            <!-- <div class="col m12">
+                <debug-panel [data]="orderSheetForm.value"></debug-panel>
+            </div> -->
+
+
+
+
+
+
+
+
+
+        </form>
+    </div>
+</section>
