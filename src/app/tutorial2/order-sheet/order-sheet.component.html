@@ -4,10 +4,21 @@
 <section class="section">
     <div class="row">
         <form [formGroup]="orderSheetForm" (ngSubmit)="onSubmitForm()">
-            <section class="section">
+            <section class="section customerName">
                 <div class="col m6 offset-m3 input-field">
-                    <input type="text" class="validate" id="name" formControlName="customerName">
+                    <input type="text" id="name" formControlName="customerName">
                     <label for="name">Your Name</label>
+                    <div class="errors" *ngIf="customerNameControl.errors">
+                        <div *ngIf="customerNameControl.errors.required && (customerNameControl.touched || customerNameControl.dirty)">
+                            This is field required !
+                        </div>
+                        <div *ngIf="customerNameControl.errors.minlength">
+                            Must be at least {{customerNameControl.errors.minlength.requiredLength}} letters !
+                        </div>
+                    </div>
+                    <div class="welcome-back" *ngIf="showWelcomeMessage">
+                        Welcome back {{customerNameControl.value}}
+                    </div>
                 </div>
             </section>
 
@@ -16,10 +27,10 @@
                 <section class="section">
                     <div class="col m4 input-field">
                         <h5>Pick your size</h5>
-                            <input type="radio" name="size" value="small" id="small" class="with-gap">
+                            <input type="radio" formControlName="size" value="small" id="small" class="with-gap">
                             <label for="small">Small</label>
 
-                            <input type="radio" id="large" name="size" value="large" class="with-gap">
+                            <input type="radio" id="large" formControlName="size" value="large" class="with-gap">
                             <label for="large">Large</label>
                     </div>
                 </section>
@@ -30,7 +41,7 @@
                         <h5>Specialty SandWich</h5>
                           <select class="browser-default" formControlName="specialtySandwich">
 
-                            <option value="" disabled selected>Choose your option</option>
+                            <option value="" selected="selected">Choose your option</option>
 
                             <option value="The Grinder">The Grinder</option>
 
@@ -57,6 +68,24 @@
                     </div>
                 </section>
 
+                <section class="section" *ngIf="!orderSheetForm.get('specialtySandwich').value">
+                    <div class="col m4 input-field">
+                        <h5>A Bread</h5>
+                            <input type="radio" formControlName="bread" value="Wheat Roll" id="wheat_roll">
+                            <label for="wheat_roll">Wheat Roll</label>
+
+                            <input type="radio" id="white_roll" formControlName="bread" value="White Roll">
+                            <label for="white_roll">White Roll</label>
+
+                            <input type="radio" id="Sourdough" formControlName="bread" value="Sourdough Roll">
+                            <label for="Sourdough">Sourdough Roll</label>
+                    </div>
+                </section>
+                <div class="errors" *ngIf="orderSheetForm.errors">
+                    <div *ngIf="orderSheetForm.errors.requiredWhen">
+                        Let us know what kind of bread you like !
+                    </div>
+                </div>
 
             </div>
 
@@ -80,7 +109,6 @@
                     </div>
                 </section>
 
-
                 <section class="section" formGroupName="cheeses">
                     <div class="col m4">
                         <h5>The Chesses</h5>
@@ -98,7 +126,6 @@
                             </p>
                     </div>
                 </section>
-
 
                 <section class="section" formGroupName="veggiesAndSuch">
                     <div class="col m4">
@@ -148,8 +175,6 @@
                 </div>
             </section>
 
-
-
             <section class="section">
                 <div class="col m10 offset-m1">
                     <h5>Orther Notes</h5>
@@ -160,26 +185,21 @@
                 </div>
             </section>
 
-
             <section class="section">
                 <div class="col m4 offset-m4">
-                    <button class="btn waves-effect-waves-ligth green accent-3" type="submit"><i class="material-icons left">send</i>Submit Place Order</button>
+                    <button [disabled]="!orderSheetForm.valid" class="btn waves-effect-waves-ligth green accent-3" type="submit"><i class="material-icons left">send</i>Place Order</button>
                     <button class="btn waves-effect-waves-ligth red" type="button" (click)="onResetForm()"><i class="material-icons left">info_outline</i>Reset</button>
                 </div>
             </section>
 
-
             <!-- <div class="col m12">
                 <debug-panel [data]="orderSheetForm.value"></debug-panel>
             </div> -->
-
-
-
-
-
-
-
-
+            <div class="col m12 white-text red darken-3">
+                <pre>
+                        {{orderSheetForm.value}}
+                </pre>
+            </div>
 
         </form>
     </div>

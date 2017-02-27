@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="columns">
+        <button (click)="toggleMove()">Press me for animation</button>
+    </div>
+    <div class="columns">
+        <div id="content" [@focusPanel]="click_active" [@movePanel]
+            (@focusPanel.done)="animationDone($event)" (@focusPanel.start)="animationStart($event)"
+        >Look at me animate</div>
+    </div>
+
+
+
+
+
+    <button (click)="toggleHeight()">ToggleHeight</button>
+    <div class="box">
+        <div [@heightTrigger]="heightState" class="heightBox">
+            <br />
+            <br />
+        </div>
+    </div>
+
+
+
+
+
+
+    <button (click)="toggleFly()">ToggleFlyInOut</button>
+    <div *ngIf="showDiv" [@flyInOut]>
+        FLYINOUT
+    </div>
+</div>

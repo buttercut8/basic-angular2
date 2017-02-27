@@ -1,0 +1,31 @@
+.customerName {
+    input[type=text].ng-untouched.ng-pristine{
+        border-width:2px;
+        border-color:#960085
+    }
+}
+.welcome-back{
+    font-size: 1.2em;
+    padding: 0px 20px;
+    color:#2f37ff;
+    background-color: #4ffebe;
+    border-radius:12px;
+}
+.errors{
+    div{
+        color:#ff1818;
+        font-weight:500;
+    }
+}
+button:disabled {
+    background: #d6d6d6;
+    color:#ff4242;
+    cursor: default;
+    border-color: rgba(255,255,255,.5);
+    &:before{
+        border-color: #e22424
+    }
+}
+button[disabled=disabled]{
+    color:#e4382e
+}

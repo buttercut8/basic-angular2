@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, XHRBackend } from '@angular/http';
+import 'hammerjs';
 
 import { AppComponent } from './app.component';
 import { MarketComponent } from './market/market.component';
@@ -23,7 +25,9 @@ import { lookupTokenGender, lookupGenders } from './tutorial1/providers';
 import { Tutorial2Component } from './tutorial2/tutorial2.component';
 import { OrderSheetComponent } from './tutorial2/order-sheet/order-sheet.component';
 import { DebugPanelComponent } from './tutorial2/debug-panel/debug-panel.component';
-
+import { MaterialModule } from '@angular/material';
+import { MaterialComponent } from './material/material.component';
+import { AnimationComponent } from './animation/animation.component';
 
 @NgModule({
   declarations: [
@@ -43,25 +47,28 @@ import { DebugPanelComponent } from './tutorial2/debug-panel/debug-panel.compone
    Tutorial2Component,
    OrderSheetComponent,
    DebugPanelComponent,
+   AnimationComponent,
+   //
+   MaterialComponent,
 
 
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    MaterialModule
   ],
-  // providers: [
-      //   CollectableService,
-      //   ItemService,
-      //   { provide : lookupTokenGender, useValue: lookupGenders } ,
-      //   { provide : XHRBackend, useClass: MockXHRBackend }
+ //  providers: [
+ //        CollectableService,
+ //        ItemService,
+ //        { provide : lookupTokenGender, useValue: lookupGenders } ,
+ //        // { provide : XHRBackend, useClass: MockXHRBackend }
  // ],
   providers: [
-
-
   ],
-  bootstrap: [Tutorial2Component]
+  bootstrap: [MaterialComponent]
 })
 export class AppModule {
 

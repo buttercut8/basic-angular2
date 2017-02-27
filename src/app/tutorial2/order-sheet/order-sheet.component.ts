@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, FormArray } from "@angular/forms";
-
+import { FormGroup, FormBuilder, FormControl, FormArray, Validators } from "@angular/forms";
+import { CustomValidators } from "../shared/custom-validators";
 @Component({
   selector: 'order-sheet',
   templateUrl: './order-sheet.component.html',
@@ -9,6 +9,8 @@ import { FormGroup, FormBuilder, FormControl, FormArray } from "@angular/forms";
 export class OrderSheetComponent implements OnInit {
     orderSheetForm;
     weirdRequestsControls;
+    showWelcomeMessage = false;
+    customerNameControl;
 
 
   constructor(private formBuilder : FormBuilder) {
@@ -22,7 +24,7 @@ export class OrderSheetComponent implements OnInit {
 
   buildForm(){
       this.orderSheetForm = this.formBuilder.group({
-          customerName: this.formBuilder.control(null),
+          customerName: this.formBuilder.control(null, [Validators.required,Validators.minLength(4)]),
           specialtySandwich: this.formBuilder.control(null),
           ortherNotes: this.formBuilder.control(null),
           size: this.formBuilder.control(null),
@@ -45,8 +47,16 @@ export class OrderSheetComponent implements OnInit {
               veggieTomato :  this.formBuilder.control(null),
               veggieMustard: this.formBuilder.control(null)
           }),
+      },
+      {
+          validator : CustomValidators.requiredWhen('bread','specialtySandwich')
       });
       this.weirdRequestsControls = this.orderSheetForm.get('weirdRequests') as FormArray;
+      this.customerNameControl = this.orderSheetForm.get('customerName');
+      this.customerNameControl.valueChanges
+                .subscribe(value => {
+                    this.showWelcomeMessage = value && value.toLowerCase().trim() === "Remy Nguyen";
+                });
   }
 
 
